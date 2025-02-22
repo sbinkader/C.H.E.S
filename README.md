@@ -1,3 +1,5 @@
+*[Try it Now!](https://cardgambit.online/)*
+
 # About the Project
 
 Our project is an observation-based card game, with two different playing modes, that challenge players to recall the order of three randomly numbered cards after they have been shuffled and hidden. The game combines elements of focus, observation, and time pressure to create an engaging and rewarding experience.
