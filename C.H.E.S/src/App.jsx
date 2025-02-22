@@ -4,9 +4,12 @@ import Username from "./landingPage";
 import SelectTheTwo from "./Mode";
 import GamePage from "./gamepage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { NameProvider } from "./NameContext";
+
 
 function App() {
   return (
+    <NameProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Username />} />
@@ -15,6 +18,7 @@ function App() {
         <Route path="/game/:mode" element={<GamePage />} />
       </Routes>
     </BrowserRouter>
+    </NameProvider>
   );
 }
 

@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useName } from "./NameContext";
+
 
 function GamePage() {
   const { mode } = useParams();
@@ -143,6 +145,7 @@ function GamePage() {
           width: "100vw",
           backgroundColor: "white",
         }}
+        className="generalTextGame"
       >
         <div
           style={{
@@ -216,6 +219,7 @@ function GamePage() {
           width: "100vw",
           backgroundColor: "white",
         }}
+        className="generalTextGame"
       >
         <h1>Game Over!</h1>
         <h2>Your score: {count}</h2>
@@ -233,8 +237,9 @@ function GamePage() {
             transition:
               "transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out",
           }}
+          className="generalTextGame"
         >
-          Play again!
+          Play Again!
         </button>
       </div>
     );

@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useName } from "./NameContext";
+import "./index.css";
 
 export default function Username() {
   const [name, setName] = useState(""); // Local state for input
   const navigate = useNavigate();
+  const { setUserName } = useName(); // Access context function
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent page reload
+    e.preventDefault(); 
     if (name.trim()) {
-      // Ensure name isn’t empty
+      setUserName(name);
       navigate("/mode");
     }
   };
@@ -24,8 +27,8 @@ export default function Username() {
       <div>
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="name">
-              <h1 style={{ color: "#ff0000" }}>What&apos;s your name?</h1>
+            <label name="name">
+              <h1 style={{fontSize: "5rem" }}  className="generalText">What&apos;s your name?</h1>
             </label>
             <div>
               <input
@@ -36,17 +39,16 @@ export default function Username() {
                 onChange={(e) => setName(e.target.value)}
                 style={{
                   height: "40px",
-                  width: "250px",
+                  width: "30vw",
                   padding: "10px",
-                  border: "2px solid #ff0000",
+                  border: "2px solid black",
                   borderRadius: "8px",
                   boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
                   fontSize: "16px",
                   outline: "none",
                   transition: "border-color 0.3s ease",
                 }}
-                onFocus={(e) => (e.target.style.borderColor = "#ff5555")}
-                onBlur={(e) => (e.target.style.borderColor = "#ff0000")}
+               
               />
             </div>
           </div>
@@ -55,23 +57,25 @@ export default function Username() {
             <button
               type="submit" // Trigger form submission
               style={{
-                color: "#ff0000",
+                color: "black",
                 backgroundColor: "transparent",
-                border: "2px solid #ff0000",
+                border: "2px solid black",
                 borderRadius: "8px",
                 padding: "10px 20px",
                 fontSize: "16px",
+                minWidth: "15vw",
+                width: "10vw",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
                 outline: "none",
               }}
               onMouseOver={(e) => {
                 e.target.style.backgroundColor = "#ff000033"; // Light red hover
-                e.target.style.color = "#ff5555"; // Slightly lighter red text
+                e.target.style.color = "black"; // Slightly lighter red text
               }}
               onMouseOut={(e) => {
                 e.target.style.backgroundColor = "transparent";
-                e.target.style.color = "#ff0000";
+                e.target.style.color = "black";
               }}
               onFocus={(e) => {
                 e.target.style.boxShadow = "0 0 5px rgba(255, 0, 0, 0.5)"; // Focus glow

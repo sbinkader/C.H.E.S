@@ -35,6 +35,21 @@ h1 {
   line-height: 1.1;
 }
 
+.generalText {
+    font-Size: 4rem;
+    font-weight: 900;
+    color: rgb(66, 52, 131);
+    margin-top: 54;
+    text-shadow:
+      -0.2px -0.2px 0.2px brown, 0.2px -0.2px 0.2px brown, -0.2px 0.2px 0.2px brown, 0.2px 0.2px 0.2px brown;
+}
+
+.generalTextGame {
+  color: rgb(66, 52, 131);
+  text-shadow:
+    -0.2px -0.2px 0.2px brown, 0.2px -0.2px 0.2px brown, -0.2px 0.2px 0.2px brown, 0.2px 0.2px 0.2px brown;
+}
+
 button {
   border-radius: 8px;
   border: 1.5px solid transparent;

@@ -1,7 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useName } from "./NameContext";
+import "./index.css";
+
 
 export default function SelectTheTwo() {
   const navigate = useNavigate();
+  const {userName} = useName();
+
   const containerStyle = {
     display: "flex",
     flexDirection: "column",
@@ -67,7 +72,7 @@ export default function SelectTheTwo() {
 
   return (
     <div style={containerStyle}>
-      <p style={textStyle}>Select the game mode you want to compete in:</p>
+      <p className="generalText">Hi {userName}, please select the game mode you want to compete in:</p>
 
       <div style={buttonContainerStyle}>
         <button style={rankedButtonStyle} onClick={goToTimed}>
