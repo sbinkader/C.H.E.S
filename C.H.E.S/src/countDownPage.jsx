@@ -1,45 +1,40 @@
-import React from 'react';
-<link href="https://fonts.googleapis.com/css2?family=Cosmic&display=swap" rel="stylesheet"></link>
-export default class CountDown extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            count: 3
-        };
-        this.timer = null; 
-    }
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-    componentDidMount() {
-        this.timer = setInterval(() => {
-            this.setState(prevState => {
-                if (prevState.count > 0) {
-                    return { count: prevState.count - 1 };
-                } else {
-                    clearInterval(this.timer); 
-                    return null; 
-                }
-            });
-        }, 1000);
-    }
-    
-    componentWillUnmount() {
-        clearInterval(this.timer); 
-    }
+function CountDown() {
+  const [count, setCount] = useState(3);
+  const navigate = useNavigate();
 
-     render() {
-        const { count } = this.state;
-    
-            // Define the cosmic style
-            const cosmicStyle = {
-                fontFamily: 'Cosmic, sans-serif', // Ensure you have included the Cosmic font
-                fontSize: '15em',
-                color: 'red'
-            };
-    
-            return (
-                <div style={cosmicStyle}>
-                    {count}
-                </div>
-            );
+  useEffect(() => {
+    if (count > 0) {
+      const timer = setInterval(() => {
+        setCount((prevCount) => prevCount - 1);
+      }, 1000);
+      return () => clearInterval(timer);
     }
+  }, [count]);
+
+  useEffect(() => {
+    if (count === 0) {
+      navigate("/mode");
+    }
+  }, [count, navigate]);
+
+  const countdownStyle = {
+    fontFamily: "Arial, sans-serif",
+    fontSize: "5rem",
+    color: "red",
+    textAlign: "center",
+  };
+
+  return (
+    <>
+      <div>
+        <p style={countdownStyle}>You Blink, You Lose!</p>
+      </div>
+      <div style={countdownStyle}>{count}</div>
+    </>
+  );
 }
+
+export default CountDown;

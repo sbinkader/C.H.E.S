@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 
-function GamePage({ cardCount = 3, timerDuration = 60 }) {
+function GamePage() {
+  const { mode } = useParams();
+  const cardCount = 3;
+  const timerDuration = mode === "timed" ? 60 : mode === "practice" ? 600 : 60;
+
   const generateUniqueRandomNumbers = (count) => {
     const numbers = new Set();
     while (numbers.size < count) {
@@ -54,6 +60,12 @@ function GamePage({ cardCount = 3, timerDuration = 60 }) {
       resetGame();
     }
   }, [memorySelection]);
+
+  const handlePlayAgain = () => {
+    resetGame();
+    setTimeLeft(timerDuration);
+    setCount(0);
+  };
 
   // Check if two arrays are equal
   const arraysEqual = (a, b) =>
@@ -121,11 +133,22 @@ function GamePage({ cardCount = 3, timerDuration = 60 }) {
 
   if (timeLeft > 0) {
     return (
-      <div style={{ width: "50vw" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          width: "100vw",
+          backgroundColor: "white",
+        }}
+      >
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
+            width: "50vw",
             marginBottom: 20,
           }}
         >
@@ -183,13 +206,47 @@ function GamePage({ cardCount = 3, timerDuration = 60 }) {
     );
   } else {
     return (
-      <div style={{ textAlign: "center", padding: 20 }}>
-        <h1>Game Over</h1>
-        <h3>Your score: {count}</h3>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          width: "100vw",
+          backgroundColor: "white",
+        }}
+      >
+        <h1>Game Over!</h1>
+        <h2>Your score: {count}</h2>
+        <button
+          onClick={handlePlayAgain}
+          style={{
+            marginTop: 20,
+            padding: "10px 40px",
+            fontSize: "1rem",
+            cursor: "pointer",
+            border: "2px solid #ccc",
+            borderRadius: "8px",
+            backgroundColor: "white",
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+            transition:
+              "transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out",
+          }}
+        >
+          Play again!
+        </button>
       </div>
     );
   }
 }
+
+GameCard.propTypes = {
+  number: PropTypes.number.isRequired,
+  isFlipped: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  isSelected: PropTypes.bool.isRequired,
+};
 
 function GameCard({ number, isFlipped, onClick, isSelected }) {
   return (
