@@ -1,4 +1,4 @@
-*[Try it Now!](https://cardgambit.online/)*
+# [Try it Now!](https://cardgambit.online/)
 
 # About the Project
 
